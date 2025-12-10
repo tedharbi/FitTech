@@ -7,17 +7,121 @@
   <title>Home | FiTech • AI-Powered Predictive Fitness System</title>
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #0f1724;        
+      --surface: #111827;   
+      --muted: #94a3b8;     
+      --accent: #ff6b00;    
+      --accent-2: #00d084;  
+      --glass: rgba(255,255,255,0.03);
+      --card-radius: 12px;
+      --container-width: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg) 0%, #071021 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .container{
+      width:90%;
+      max-width:var(--container-width);
+      margin:0 auto;
+      padding:20px 0;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      z-index:50;
+    }
+
+    header .container{display:flex;align-items:center;gap:16px;}
+    header h1{font-size:18px;margin:0;display:flex;align-items:center;gap:12px;color:var(--accent);}
+    header h1 .brand-icon{background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:20px}
+
+    nav{margin-left:auto}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+
+    .menu-toggle{display:none;background:transparent;border:none;color:var(--muted);font-size:18px}
+
+    main{padding:28px 0 60px}
+
+    .hero-section{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-bottom:28px}
+    .hero-section h2{font-size:28px;margin:0 0 8px;color:#fff}
+    .hero-section p{color:var(--muted);margin:0 0 18px}
+
+    .hero-card{background:var(--surface);padding:20px;border-radius:var(--card-radius);box-shadow: 0 6px 18px rgba(3,10,18,0.6);border:1px solid rgba(255,255,255,0.02)}
+
+    .feature-grid{display:flex;flex-direction:column;gap:12px}
+    .feature-card{display:flex;align-items:center;gap:12px;padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02);cursor:pointer}
+    .feature-card i{font-size:20px;color:var(--accent)}
+    .feature-card h3{margin:0;color:#fff;font-size:16px}
+    .feature-card p{margin:0;color:var(--muted);font-size:13px}
+
+    .upload-area{margin-top:16px;padding:18px;border-radius:var(--card-radius);background:var(--glass);border:1px solid rgba(255,255,255,0.03)}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);cursor:pointer}
+    .btn:disabled{opacity:0.5;cursor:not-allowed}
+    .primary-btn{background:linear-gradient(90deg,var(--accent),#ff9b57);color:#071021;border:none}
+    .success-btn{background:linear-gradient(90deg,var(--accent-2),#5af39e);color:#04281a;border:none}
+    .share-btn{background:transparent;color:var(--muted);border:1px dashed rgba(255,255,255,0.04)}
+
+    .image-preview-container{margin-top:14px;display:flex;flex-direction:column;align-items:center;gap:10px}
+    #imagePreview{max-width:100%;max-height:380px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);display:none}
+    #videoPreview{max-width:100%;border-radius:8px;display:none}
+    #previewPlaceholder{color:var(--muted);padding:50px 10px;border-radius:8px;background:rgba(0,0,0,0.12);width:100%;text-align:center}
+
+    .results-area{margin-top:20px;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02)}
+    .result-item{margin-bottom:8px}
+    .result-item strong{color:#fff}
+    .result-description p{color:var(--muted)}
+
+    .history-section{margin-top:30px}
+    .history-list{display:flex;flex-direction:column;gap:12px}
+    .history-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .history-item .history-item-header{display:flex;justify-content:space-between;align-items:center}
+
+    footer{padding:24px 0;border-top:1px solid rgba(255,255,255,0.02);margin-top:36px;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero-section{grid-template-columns:1fr;}
+      nav{display:none}
+      .menu-toggle{display:inline-flex;margin-left:auto}
+    }
+  </style>
 </head>
 
 <body>
   <header>
     <div class="container">
       <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-      <a style="color: #fff;text-decoration: none;" href="/"><h1><i class="fas fa-leaf"></i> FiTech • AI-Powered Predictive Fitness System</h1></a>
+      <a style="color: #fff;text-decoration: none;display:flex;align-items:center;gap:12px;" href="/">
+        <h1>
+          <span class="brand-icon"><i class="fas fa-dumbbell"></i></span>
+          <span style="color:#fff; font-weight:700;">FiTech</span>
+          <small style="color:var(--muted); font-weight:600; font-size:12px; margin-left:8px;">• AI Predictive Fitness</small>
+        </h1>
+      </a>
       <nav>
         <ul id="navMenu">
           <li><a href="#" data-target="home">Home</a></li>
-          <li><a href="#" data-target="detect">FiTech Predict Fitness</a></li>
+          <li><a href="#" data-target="detect">Predict</a></li>
+          <li><a href="#" data-target="history">History</a></li>
         </ul>
       </nav>
     </div>
@@ -25,53 +129,69 @@
 
   <main class="container">
     <section id="home" class="hero-section">
-      <h2>Welcome to the FiTech • AI-Powered Predictive Fitness System</h2>
-      <p>Train Like the Top 1%</br>
-        Machine Learning predicts your <span class="text-purple-400">exact 1RM</span>, 
-        <span class="text-pink-400">next PR date</span>, and 
-        <span class="text-cyan-400">injury risk</span> — with 97% accuracy.</p>
-      <div class="feature-grid">
-        <div class="feature-card" data-target="detect" data-action="capture">
-          <i class="fas fa-camera"></i>
-          <h3>Record Video</h3>
-          <p>Use your device camera to record your workout.</p>
+      <div class="hero-card">
+        <h2>Train Smarter — Predict Your Progress with FiTech</h2>
+        <p>FiTech uses machine learning to forecast your performance (1RM, PR timeline, injury risk) and recommends workout adjustments tailored to your body and progress. Use any of the programs below.</p>
+
+        <div class="feature-grid">
+          <div class="feature-card" data-target="detect" data-action="capture">
+            <i class="fas fa-video"></i>
+            <div>
+              <h3>Record Workout</h3>
+              <p>Capture your lifts and technique directly from your device camera.</p>
+            </div>
+          </div>
+
+          <div class="feature-card" data-target="detect" data-action="upload">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <div>
+              <h3>Upload Session</h3>
+              <p>Upload recorded sessions for deeper analysis and progress tracking.</p>
+            </div>
+          </div>
+
+          <div class="feature-card" data-target="history">
+            <i class="fas fa-chart-line"></i>
+            <div>
+              <h3>Track Progress</h3>
+              <p>Visualize trends and see which exercises move the needle.</p>
+            </div>
+          </div>
         </div>
-        <div class="feature-card" data-target="detect" data-action="upload">
-          <i class="fas fa-upload"></i>
-          <h3>Upload Video</h3>
-          <p>Upload video from your gallery for analysis.</p>
-        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3 style="margin-top:0;color:var(--accent);">Quick Actions</h3>
+        <p style="color:var(--muted);font-size:14px;margin-top:0;">Start recording now or upload a session for instant analysis.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+          <button id="startCameraBtn" class="btn primary-btn"><i class="fas fa-camera"></i> Use Camera</button>
+          <button id="uploadBtn" class="btn" style="background:rgba(255,255,255,0.02);color:#fff;border:none;"><i class="fas fa-upload"></i> Upload Video</button>
+          <button id="analyzeImageBtn" class="btn success-btn" disabled><i class="fas fa-search"></i> Analyze</button>
         </div>
       </div>
 
     </section>
 
     <section id="detect" class="detection-section">
-      <h2>FiTech Fitness System</h2>
-      <div class="upload-area">
-        <p>Select or record a video of your workout for analysis:</p>
-        <input type="file" id="imageInput" accept="image/jpeg,image/jpg,image/png,image/webp">
-        <button id="startCameraBtn" class="btn primary-btn"><i class="fas fa-camera"></i> Use Camera</button>
-        <button id="uploadBtn" class="btn primary-btn"><i class="fas fa-upload"></i> Upload Video</button>
+      <h2 style="color:#fff">FiTech Fitness System</h2>
 
-        <!-- Inside <body> -->
+      <div class="upload-area">
+        <p style="color:var(--muted)">Select or record a video of your workout for analysis:</p>
+        <input type="file" id="imageInput" accept="image/jpeg,image/jpg,image/png,image/webp">
+
         <div class="image-preview-container">
-        <div id="loadingSpinner" class="spinner-container" style="display: none;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><linearGradient id="a12"><stop offset="0" stop-color="#28A745" stop-opacity="0"></stop><stop offset="1" stop-color="#28A745"></stop></linearGradient><circle fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 44 0 44 0 44 0 44 0 360" cx="100" cy="100" r="70" transform-origin="center"><animateTransform type="rotate" attributeName="transform" calcMode="discrete" dur="2" values="360;324;288;252;216;180;144;108;72;36" repeatCount="indefinite"></animateTransform></circle></svg>
-          <!-- <img src="https://www.svgbackgrounds.com/svg/preloaders/spinning-dots.svg" alt="Loading..."
-            class="spinner-img"> -->
-          <p>Analyzing...</p>
-        </div>
+          <div id="loadingSpinner" class="spinner-container" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><linearGradient id="a12"><stop offset="0" stop-color="#28A745" stop-opacity="0"></stop><stop offset="1" stop-color="#28A745"></stop></linearGradient><circle fill="none" stroke="url(#a12)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 44 0 44 0 44 0 44 0 360" cx="100" cy="100" r="70" transform-origin="center"><animateTransform type="rotate" attributeName="transform" calcMode="discrete" dur="2" values="360;324;288;252;216;180;144;108;72;36" repeatCount="indefinite"></animateTransform></circle></svg>
+            <p>Analyzing...</p>
+          </div>
+
           <video id="videoPreview" autoplay playsinline style="display:none"></video>
           <img id="imagePreview">
           <p id="previewPlaceholder">No video selected</p>
-          <button id="captureBtn" class="btn" style="display:none;"><i class="fas fa-circle"
-              style="margin: 0!important;"></i></button>
+          <button id="captureBtn" class="btn" style="display:none;"><i class="fas fa-circle" style="margin: 0!important;"></i></button>
         </div>
 
-
-        <button id="analyzeImageBtn" class="btn success-btn" disabled><i class="fas fa-search"></i> Analyze
-          Video</button>
+        <button id="analyzeImageBtn" class="btn success-btn" disabled style="margin-top:12px"><i class="fas fa-search"></i> Analyze Video</button>
       </div>
 
       <div id="resultsSection" class="results-area" style="display:none;">
@@ -105,10 +225,11 @@
       </div>
 
     </section>
+
     <section id="history" class="history-section">
       <h2>Previous Workouts</h2>
       <div id="historyList" class="history-list"></div>
-      <p id="noHistoryMessage" style="display:none; text-align:center;">No previous workouts found.</p>
+      <p id="noHistoryMessage" style="display:none; text-align:center; color:var(--muted)">No previous workouts found.</p>
     </section>
     <button id="loadMoreBtn" class="btn" style="display: none; margin: 20px auto 0;">Show More</button>
 
@@ -121,12 +242,13 @@
   </footer>
 
   <!-- Fullscreen image modal -->
-  <div id="imageModal" class="modal"
-    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
+  <div id="imageModal" class="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; justify-content:center; align-items:center;">
     <img id="modalImg" src="" style="object-fit: contain;object-position: center;width:100%; max-height:90%;">
   </div>
+
   <script src="script.js"></script>
-  <script>
+
+<script>
     document.addEventListener("DOMContentLoaded", function () {
       // Smooth scroll for internal nav on same page
       const navMenu = document.getElementById("navMenu");
@@ -146,14 +268,12 @@
         });
       });
 
-      // If URL contains hash (e.g. /home/#history), scroll to it smoothly
       const hash = window.location.hash;
       if (hash) {
         const sectionId = hash.substring(1); // remove the '#' character
         const targetSection = document.getElementById(sectionId);
 
         if (targetSection) {
-          // Use setTimeout to delay scroll until after initial render
           setTimeout(() => {
             targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
           }, 100);
@@ -162,6 +282,7 @@
     });
 
   </script>
+
   <script>
     document.querySelectorAll('.feature-card').forEach(card => {
       card.addEventListener('click', () => {
@@ -173,7 +294,6 @@
           targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Trigger specific actions based on data-action
         if (actionType === 'capture') {
           document.getElementById('startCameraBtn').click();
         } else if (actionType === 'upload') {
@@ -190,7 +310,6 @@
 
   </script>
 
-  <!-- Inside <script type="module"> -->
   <script type="module">
     const imageInput = document.getElementById('imageInput');
     const placeholder = document.getElementById('previewPlaceholder');
@@ -411,17 +530,14 @@
       }
     }
 
-    // Initial load
     document.addEventListener('DOMContentLoaded', () => {
       loadNextPage();
     });
 
-    // Load more click
     loadMoreBtn.addEventListener('click', () => {
       loadNextPage();
     });
 
-    // Fullscreen image viewer
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImg');
     window.openFullscreen = function (src) {
@@ -433,7 +549,6 @@
       modalImg.src = '';
     });
 
-    // 🔁 Dynamic injection for new analysis
     window.appendToHistory = function (entry) {
       // Create the item DOM and inject to top
       if (loadedList.some(item => item.id === entry.id)) {
@@ -482,5 +597,4 @@
   </script>
 
 </body>
-
 </html>
